@@ -1,0 +1,11 @@
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/plant_list"
+    android:name="edu.uc.cech.ss143042prep.PlantListFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    tools:context=".PlantListActivity"
+    tools:layout="@android:layout/list_content" />
+
