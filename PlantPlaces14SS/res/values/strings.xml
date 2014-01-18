@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PlantPlaces14SS</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="lblSearch">Search</string>
+    <string name="lblGPSAPlant">GPS A Plant</string>
+    <string name="lblDescription">Description of the Plant:</string>
+
+</resources>
