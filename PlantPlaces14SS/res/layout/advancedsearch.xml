@@ -29,6 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/actPlantName"
+        android:onClick="searchForPlants"
         android:text="@string/lblSearch" />
 
 </RelativeLayout>
