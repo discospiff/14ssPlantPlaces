@@ -11,5 +11,6 @@
     <string name="lblLatidudeLabel">Latitude</string>
     <string name="blank"></string>
     <string name="lblLongitudeLabel">Longitude</string>
+    <string name="lblPlantName">Plant Name</string>
 
 </resources>
