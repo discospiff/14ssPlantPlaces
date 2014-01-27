@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".SearchPlantsActivity" >
+    tools:context=".GPSAPlantActivity" >
 
     <TextView
         android:id="@+id/textView1"
@@ -21,7 +21,17 @@
         android:layout_alignLeft="@+id/edtDescription"
         android:layout_below="@+id/edtDescription"
         android:onClick="searchClicked"
-        android:text="@string/lblSearch" />
+        android:text="@string/lblSelectAPlant" />
+
+    <EditText
+        android:id="@+id/edtDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:ems="10" />
+
+
 
     <TextView
         android:id="@+id/textView2"
@@ -31,12 +41,36 @@
         android:layout_below="@+id/textView1"
         android:text="@string/lblDescription" />
 
-    <EditText
-        android:id="@+id/edtDescription"
+    <TextView
+        android:id="@+id/txtLatitudeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/textView2"
-        android:ems="10" />
+        android:layout_alignLeft="@+id/search"
+        android:layout_below="@+id/search"
+        android:text="@string/lblLatidudeLabel" />
+
+    <TextView
+        android:id="@+id/lblLatitudeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search"
+        android:layout_toRightOf="@+id/txtLatitudeLabel"
+        android:text="@string/blank" />
+
+    <TextView
+        android:id="@+id/lblLongitudeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtLatitudeLabel"
+        android:layout_below="@+id/txtLatitudeLabel"
+        android:text="@string/lblLongitudeLabel" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/lblLongitudeLabel"
+        android:layout_toRightOf="@+id/lblLongitudeLabel"
+        android:text="@string/blank" />
 
 </RelativeLayout>

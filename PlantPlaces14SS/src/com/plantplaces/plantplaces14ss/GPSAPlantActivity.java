@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class SearchPlantsActivity extends Activity {
+public class GPSAPlantActivity extends Activity {
 	
 	// declare a variable that will hold a reference to the EditText component on the screen.
 	EditText description;
