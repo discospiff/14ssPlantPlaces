@@ -1,6 +1,8 @@
 package com.plantplaces.dto;
 
-public class Plant {
+import java.io.Serializable;
+
+public class Plant implements Serializable {
 
 	public String getGenus() {
 		return genus;

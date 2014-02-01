@@ -73,4 +73,21 @@
         android:layout_toRightOf="@+id/lblLongitudeLabel"
         android:text="@string/blank" />
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lblLongitudeLabel"
+        android:layout_below="@+id/lblLongitudeLabel"
+        android:text="@string/lblSelectedPlant" />
+
+    <TextView
+        android:id="@+id/txtSelectedPlant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView1"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_toRightOf="@+id/textView1"
+        android:text="@string/blank" />
+
 </RelativeLayout>
