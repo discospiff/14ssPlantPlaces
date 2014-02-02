@@ -90,4 +90,23 @@
         android:layout_toRightOf="@+id/textView1"
         android:text="@string/blank" />
 
+    <Button
+        android:id="@+id/btnCaptureImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:onClick="onTakePhotoClicked"
+        android:text="@string/lblTakePhoto" />
+
+    <ImageView
+        android:id="@+id/imgPlant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnCaptureImage"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/btnCaptureImage"
+        android:src="@drawable/ic_launcher" />
+
 </RelativeLayout>

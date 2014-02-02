@@ -13,5 +13,6 @@
     <string name="lblLongitudeLabel">Longitude</string>
     <string name="lblPlantName">Plant Name</string>
     <string name="lblSelectedPlant">"Selected Plant: "</string>
+    <string name="lblTakePhoto">Take Photo</string>
 
 </resources>
