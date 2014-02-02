@@ -32,4 +32,23 @@
         android:onClick="searchForPlants"
         android:text="@string/lblSearch" />
 
+    <Button
+        android:id="@+id/btnSelectPicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/btnSearchPlant"
+        android:onClick="onSelectAPictureClick"
+        android:text="@string/lblSelectPicture" />
+
+    <ImageView
+        android:id="@+id/imgPlantSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/btnSelectPicture"
+        android:src="@drawable/ic_launcher" />
+
 </RelativeLayout>

@@ -56,20 +56,23 @@ public class GPSAPlantActivity extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
-		
-		if (requestCode == AdvancedSearchActivity.PLANT_RESULTS) {
-			// change the label of the text view to be the plant that was passed in.
-			
-			// store the plant that the user selected as an attribute.
-			plant = (Plant) data.getSerializableExtra(PlantResultsActivity.PLANT_RESULT);
-		
-			/// set this plant in the TextView on the UI.
-			txtSelectedPlant.setText(plant.toString());
-		} else if (requestCode == CAMERA_RESULT) {
-			// we are here because we have received a result from the camera.
-			plantImage = (Bitmap) data.getExtras().get("data");
-			
-			imgPlant.setImageBitmap(plantImage);
+
+		if (resultCode == RESULT_OK) {
+			// only do this work if we received a good result.
+			if (requestCode == AdvancedSearchActivity.PLANT_RESULTS) {
+				// change the label of the text view to be the plant that was passed in.
+
+				// store the plant that the user selected as an attribute.
+				plant = (Plant) data.getSerializableExtra(PlantResultsActivity.PLANT_RESULT);
+
+				/// set this plant in the TextView on the UI.
+				txtSelectedPlant.setText(plant.toString());
+			} else if (requestCode == CAMERA_RESULT) {
+				// we are here because we have received a result from the camera.
+				plantImage = (Bitmap) data.getExtras().get("data");
+
+				imgPlant.setImageBitmap(plantImage);
+			}
 		}
 	}
 
