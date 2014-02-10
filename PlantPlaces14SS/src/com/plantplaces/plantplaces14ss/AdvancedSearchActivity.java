@@ -19,6 +19,8 @@ import com.plantplaces.dto.Plant;
 
 public class AdvancedSearchActivity extends Activity {
 
+	private static final String PLANTPLACES_COLOR_ACTION = "com.plantplaces.Color";
+	private static final String IMAGE_FILENAME = "IMAGE_FILENAME";
 	private static final int IMAGE_GALLERY = 10;
 	public static final int PLANT_RESULTS = 1;
 	public static final String SEARCH_PLANT_NAME = "SEARCH_PLANT_NAME";
@@ -92,22 +94,38 @@ public class AdvancedSearchActivity extends Activity {
 				// find the path of the selected image.
 				Uri photoLocation = data.getData();
 
-				// open this as a stream of data/bytes
-				try {
-					// a stream of data from the file.
-					InputStream openInputStream = getContentResolver().openInputStream(photoLocation);
-					// take a stream of data, and convert it to a Bitmap.
-					selectedImage = BitmapFactory.decodeStream(openInputStream);
-
-					// assign this image to our image view.
-					imgPlantSearch.setImageBitmap(selectedImage);
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-
-					// alert the user that something went wrong.
-					Toast.makeText(this, getString(R.string.unable_to_open_image), Toast.LENGTH_LONG).show();
-				}
+				// invoke the color match activity from PlantPlaces.com Mobile for Android - Production.
+				Intent plantPlacesColor = new Intent(PLANTPLACES_COLOR_ACTION);
+				// pass in the path of the image that was selected.
+				
+				// a bundle is a collection of related data that you can pass from one intent to another.
+				Bundle fileInfo = new Bundle();
+				
+				// add the file location to this bundle.
+				fileInfo.putString(IMAGE_FILENAME, photoLocation.toString());
+				
+				//associate the bundle of data with the intent.
+				plantPlacesColor.putExtras(fileInfo);
+			
+				// start the given activity with the URI parameter we are passing.
+				startActivity(plantPlacesColor);
+				
+//				// open this as a stream of data/bytes
+//				try {
+//					// a stream of data from the file.
+//					InputStream openInputStream = getContentResolver().openInputStream(photoLocation);
+//					// take a stream of data, and convert it to a Bitmap.
+//					selectedImage = BitmapFactory.decodeStream(openInputStream);
+//
+//					// assign this image to our image view.
+//					imgPlantSearch.setImageBitmap(selectedImage);
+//				} catch (FileNotFoundException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//
+//					// alert the user that something went wrong.
+//					Toast.makeText(this, getString(R.string.unable_to_open_image), Toast.LENGTH_LONG).show();
+//				}
 			}
 		}
 	}
