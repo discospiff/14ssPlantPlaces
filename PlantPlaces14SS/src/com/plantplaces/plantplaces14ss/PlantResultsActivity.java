@@ -3,6 +3,7 @@ package com.plantplaces.plantplaces14ss;
 import java.util.ArrayList;
 
 import android.app.ListActivity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -11,7 +12,6 @@ import android.widget.ListView;
 import com.plantplaces.dto.Plant;
 
 public class PlantResultsActivity extends ListActivity {
-
 	public static final String PLANT_RESULT = "PLANT_RESULT";
 
 	@Override
@@ -19,64 +19,84 @@ public class PlantResultsActivity extends ListActivity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 
-		// retrieve any data that was passed in, and was associated with the name "SEARCH_PLANT_NAME"
 		String searchTerm = getIntent().getStringExtra(AdvancedSearchActivity.SEARCH_PLANT_NAME);
 
-
-		// create a collection to hold the plants.
-		ArrayList<Plant> allPlants = new ArrayList<Plant>();
-
-		if (searchTerm.equalsIgnoreCase("redbud")) {
-			// create a new object from class Plant.
-			Plant redbud = new Plant();
-			redbud.setCommon("Redbud");
-			redbud.setGenus("Cercis");
-			redbud.setSpecies("canadensis");
-
-			// add the redbud and the paw paw to this collection.
-			allPlants.add(redbud);
-		}
-
-		if (searchTerm.contains("pawpaw")) {
-			// create a paw paw.
-			Plant pawpaw = new Plant();
-			pawpaw.setCommon("PawPaw");
-			pawpaw.setGenus("Asimina");
-			pawpaw.setSpecies("triloba");
-			allPlants.add(pawpaw);
-		}
+		// create an instance of our PlantSearchTask that will run in a separate thread.
+		PlantSearchTask pst = new PlantSearchTask();
+		// execute the PlantSearchTask thread.
+		// this will start a new thread and invoke doInBackground in that new thread.
+		// it will pass the search term into that new thread.
+		pst.execute(searchTerm);
 		
-		// do we have an empty list?
-		if (allPlants.size() == 0) {
-			Plant empty = new Plant();
-			empty.setCommon("No plants match your result.  Please try again");
-			allPlants.add(empty);
-		}
-		
-		// show this collection in our list.
-		ArrayAdapter<Plant> plantAdapter = new ArrayAdapter<Plant>(this, android.R.layout.simple_list_item_1, allPlants);
-
-		setListAdapter(plantAdapter);
 
 	}
-
+	
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		// TODO Auto-generated method stub
 		super.onListItemClick(l, v, position, id);
 		
-		// get the item that the user clicked.
 		Plant plant = (Plant) getListAdapter().getItem(position);
-		
-		// put the plant in the intent which we are about to return.
 		getIntent().putExtra(PLANT_RESULT, plant);
-		
-		// everything went fine.
 		setResult(RESULT_OK, getIntent());
-		
-		// finish this intent.
 		finish();
+	}
+	
+	class PlantSearchTask extends AsyncTask<String, Integer, ArrayList<Plant>> {
+	
+		
+		/**
+		 * The steps in this method will run in a separate (non-UI) thread.
+		 */
+		@Override
+		protected ArrayList<Plant> doInBackground(String... searchTerms) {
+			// we're only getting one String, so let's access that one string.
+			String searchTerm = searchTerms[0];
+			
+			ArrayList<Plant> allPlants = new ArrayList<Plant>();
+
+			if (searchTerm.equalsIgnoreCase("redbud")) {
+				// Create a new object from class plant.
+				Plant redbud = new Plant();
+				redbud.setCommon("Redbud");
+				redbud.setGenus("Cercis");
+				redbud.setSpecies("canadensis");
+				allPlants.add(redbud);	
+			}
+
+			if (searchTerm.contains("pawpaw")) {
+				Plant pawpaw = new Plant();
+				pawpaw.setCommon("PawPaw");
+				pawpaw.setGenus("Asimina");
+				pawpaw.setSpecies("triloba");
+				allPlants.add(pawpaw);
+			}
+			
+			if (allPlants.size() == 0) {
+				Plant empty = new Plant();
+				empty.setCommon("No plants match your results.  Please try again.");
+				empty.setGenus("");
+				empty.setSpecies("");
+				allPlants.add(empty);
+			}
+			
+			return allPlants;
+		}
+		
+		/**
+		 * This method will be called when doInBackground completes.
+		 * The paramter result is populated from the return values of doInBackground.
+		 * This method runs on the UI thread, and therefore can update UI components.
+		 */
+		@Override
+		protected void onPostExecute(ArrayList<Plant> allPlants) {
+			// adapt the search results returned from doInBackground so that they can be presented on the UI.
+			ArrayAdapter<Plant> plantAdapter = new ArrayAdapter<Plant>(PlantResultsActivity.this, android.R.layout.simple_list_item_1, allPlants);
+			// show the search resuts in the list.
+			setListAdapter(plantAdapter);
+		}
 		
 	}
+	
 	
 }
