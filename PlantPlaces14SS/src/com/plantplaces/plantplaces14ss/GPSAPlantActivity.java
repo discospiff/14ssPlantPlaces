@@ -17,6 +17,9 @@ import com.plantplaces.dto.Plant;
 
 public class GPSAPlantActivity extends Activity implements LocationListener {
 	
+	private static final String PLANT2 = "PLANT";
+	private static final String LONGITUDE2 = "LONGITUDE";
+	private static final String LATITUDE2 = "LATITUDE";
 	private static final int CAMERA_RESULT = 5;
 	// declare a variable that will hold a reference to the EditText component on the screen.
 	EditText description;
@@ -164,6 +167,10 @@ public class GPSAPlantActivity extends Activity implements LocationListener {
 		latitude = location.getLatitude();
 		longitude = location.getLongitude();
 		
+		updateUIForLocation();
+	}
+
+	private void updateUIForLocation() {
 		// update our user interface.
 		lblLatitudeValue.setText("" + latitude);
 		lblLongitudeValue.setText("" + longitude);
@@ -184,6 +191,36 @@ public class GPSAPlantActivity extends Activity implements LocationListener {
 	@Override
 	public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	/**
+	 * This method is called right before we change orientation, so that we can preserve
+	 * values when the screen is redrawn.
+	 */
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		// TODO Auto-generated method stub
+		super.onSaveInstanceState(outState);
+		outState.putDouble(LATITUDE2, latitude);
+		outState.putDouble(LONGITUDE2, longitude);
+		outState.putSerializable(PLANT2, plant);
+		
+	}
+	
+	/**
+	 * Display values in the UI that were saved right before orientation changed.
+	 */
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onRestoreInstanceState(savedInstanceState);
+		// repopulate values from the bundle we created in onSaveInstanceState method.
+		latitude = savedInstanceState.getDouble(LATITUDE2);
+		longitude = savedInstanceState.getDouble(LONGITUDE2);
+		updateUIForLocation();
+		plant = (Plant) savedInstanceState.getSerializable(PLANT2);
+		txtSelectedPlant.setText(plant.toString());
 		
 	}
 }
