@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.plantplaces.dao.IPlantDAO;
-import com.plantplaces.dao.PlantDAOStub;
+import com.plantplaces.dao.OnlinePlantDAO;
 import com.plantplaces.dto.Plant;
 
 public class PlantResultsActivity extends ListActivity {
@@ -59,7 +59,8 @@ public class PlantResultsActivity extends ListActivity {
 			// we're only getting one String, so let's access that one string.
 			String searchTerm = searchTerms[0];
 			// make a variable that will hold our plant DAO.
-			IPlantDAO plantDAO = new PlantDAOStub();
+			// IPlantDAO plantDAO = new PlantDAOStub();
+			IPlantDAO plantDAO = new OnlinePlantDAO();
 			
 			// fetch the plants from the DAO.
 			ArrayList<Plant> plants = plantDAO.fetchPlants(searchTerm);
