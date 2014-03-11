@@ -1,6 +1,5 @@
 package com.plantplaces.plantplaces14ss;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.location.Location;
@@ -15,7 +14,7 @@ import android.widget.TextView;
 
 import com.plantplaces.dto.Plant;
 
-public class GPSAPlantActivity extends Activity implements LocationListener {
+public class GPSAPlantActivity extends PlantPlacesActivity implements LocationListener {
 	
 	private static final String PLANT2 = "PLANT";
 	private static final String LONGITUDE2 = "LONGITUDE";
