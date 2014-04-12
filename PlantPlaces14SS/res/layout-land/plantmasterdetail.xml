@@ -3,27 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="horizontal" >
 
-      <fragment
-        android:id="@+id/findArea"
-        android:name="com.plantplaces.plantplaces14ss.PlantDetailsFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout="@layout/activity_gps_plants"/>
+
     <fragment
         android:id="@+id/findBox"
-        android:name="com.plantplaces.plantplaces14ss.PlantListFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-  
-
-    <Button
-        android:id="@+id/newSearch"
+        android:name="com.plantplaces.plantplaces14ss.SearchFragment"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_weight="1" />
+    
+    <fragment
+        android:id="@+id/findArea"
+        android:name="com.plantplaces.plantplaces14ss.PlantDetailsFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="swapFragment"
-        android:text="New Search" />
+        android:layout_weight="1"
+        tools:layout="@layout/activity_gps_plants"/>
+        
+ 
+
 
 </LinearLayout>
