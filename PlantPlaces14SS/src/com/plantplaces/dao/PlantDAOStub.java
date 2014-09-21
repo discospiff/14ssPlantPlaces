@@ -1,6 +1,7 @@
 package com.plantplaces.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.plantplaces.dto.Plant;
 
@@ -45,6 +46,13 @@ public class PlantDAOStub implements IPlantDAO {
 		}
 		
 		return allPlants;
+	}
+
+	@Override
+	public List<Plant> fetchPlantsByLocation(double latitude, double longitude,
+			double range) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

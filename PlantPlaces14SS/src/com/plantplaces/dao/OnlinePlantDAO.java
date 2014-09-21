@@ -2,6 +2,7 @@ package com.plantplaces.dao;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONArray;
@@ -89,6 +90,63 @@ public class OnlinePlantDAO implements IPlantDAO {
 		}
 		
 		return allPlants;
+	}
+	
+	/**
+	 * Given a geo location (lat + lng) fetch plant within a specified range.
+	 * @param latitude
+	 * @param longitude
+	 * @return a list of plants that are in the range from the center point.
+	 */
+	public List<Plant> fetchPlantsByLocation(double latitude, double longitude, double range) throws Exception {
+		ArrayList<Plant> plantResults = new ArrayList<Plant>();
+		
+		// the request URI will give us the JSON results we need.
+		String url = "http://www.plantplaces.com/perl/mobile/viewspecimensjson.pl?" +
+				"Lat=" + latitude +
+				"&Lng=" + longitude +
+				"&Range=" + range +
+				"&Source=location";
+		
+		
+		// Access a NetworkDAO for low level networking functions.
+		NetworkDAO networkDAO = new NetworkDAO();
+		
+		// the raw data.
+		String jsonData = networkDAO.request(url);
+		
+		// create a JSON object from the root raw data.
+		JSONObject jsonObject = new JSONObject(jsonData);
+		
+		// get the array of specimens.
+		JSONArray allSpecimens = jsonObject.getJSONArray("specimens");
+		
+		// iterate over each specimen result.
+		for (int i = 0; i < allSpecimens.length(); i++) {
+			
+			// get our json object from the array.
+			JSONObject jsonPlant = allSpecimens.getJSONObject(i);
+			
+			// create a new plant object.
+			Plant plant = new Plant();
+			
+			// populate that plant object from the JSON data.
+			plant.setLatitude(jsonPlant.getDouble("lat"));
+			plant.setLongitude(jsonPlant.getDouble("lng"));
+			plant.setGuid(jsonPlant.getInt("plant_id"));
+			// set the name.
+			plant.setGenus(jsonPlant.getString("genus"));
+			plant.setSpecies(jsonPlant.getString("species"));
+			plant.setCommon(jsonPlant.getString("common"));
+			plant.setAddress(jsonPlant.getString("address"));
+			plant.setNotes(jsonPlant.getString("notes"));
+			
+			// add the plant object to our results.
+			plantResults.add(plant);
+		}
+		
+		// return the plant results.
+		return plantResults;
 	}
 
 }

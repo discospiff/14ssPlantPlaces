@@ -38,6 +38,16 @@ android:name="com.google.android.gms.version"
 android:value="@integer/google_play_services_version" />
         <meta-data android:name="com.google.android.maps.v2.API_KEY"    
             android:value="AIzaSyA1R67bczESv5r75mOOM5mPkFbfN4O5l_I"/>
+        <activity android:name="MapOfPlants"></activity>
+        <receiver android:name="SynchronizeBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED"/>
+                <action android:name="android.net.nsd.STATE_CHANGED"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+        </receiver>
         
     </application>
 

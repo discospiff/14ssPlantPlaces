@@ -18,5 +18,6 @@
     <string name="lblSelectPicture">Select a Picture</string>
     <string name="unable_to_open_image">Unable to open image</string>
     <string name="mnuPlantDetailMaster">Plant Detail Master View</string>
+    <string name="lblMap">Map</string>
 
 </resources>

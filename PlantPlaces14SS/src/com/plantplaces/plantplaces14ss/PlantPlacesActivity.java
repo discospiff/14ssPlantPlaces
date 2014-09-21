@@ -39,6 +39,11 @@ public class PlantPlacesActivity extends Activity {
 			startActivity(combinedView);
 			
 		}
+		if (item.getItemId() == R.id.mnuMap) {
+			// start our map activity.
+			Intent mapOfPlants = new Intent(this, MapOfPlants.class);
+			startActivity(mapOfPlants);
+		}
 		
 		return true;
 	}

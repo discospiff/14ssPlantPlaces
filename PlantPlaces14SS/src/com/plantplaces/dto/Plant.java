@@ -40,12 +40,40 @@ public class Plant implements Serializable {
 	public void setGuid(int guid) {
 		this.guid = guid;
 	}
+	public double getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+	public double getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+	public String getNotes() {
+		return notes;
+	}
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	private String genus;
 	private String species;
 	private String cultivar;
 	private String common;
 	private int id;
 	private int guid;
+	private double latitude;
+	private double longitude;
+	private String notes;
+	private String address;
 	
 	/**
 	 * Return a String representation of our Plant.
